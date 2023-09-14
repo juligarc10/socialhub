@@ -4,6 +4,9 @@ logging:
       hibernate:
         SQL: debug
 spring:
+  h2:
+    console:
+      enabled: true
   datasource:
     url: @dataSource.url@
     username: @dataSource.user@
