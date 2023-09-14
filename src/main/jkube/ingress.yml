@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: socialhub-ingress
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /socialhub
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /socialhub
+            pathType: Prefix
+            backend:
+              service:
+                name: socialhub
+                port:
+                  number: 8080
