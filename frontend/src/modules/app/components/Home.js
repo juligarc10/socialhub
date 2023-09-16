@@ -3,7 +3,7 @@ import "./App.css";
 import { config } from "../../../config/constants.js";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useUserActions } from "../users/hooks/useUserActions.js";
+import { useUserActions } from "../entities/users/hooks/useUserActions.js";
 
 function rot13(s) {
   return s.replace(
