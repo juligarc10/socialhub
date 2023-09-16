@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import { config } from "../../../config/constants.js";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useUserActions } from "../users/hooks/useUserActions.js";
 
 function rot13(s) {
   return s.replace(
@@ -31,6 +33,9 @@ const Home = () => {
     setAnswer(rot13(someText));
   };
 
+  const users = useSelector((state) => state.users);
+  const { removeUser } = useUserActions();
+
   return (
     <div className="App">
       <header className="App-header">
@@ -59,6 +64,19 @@ const Home = () => {
         </p>
         <button>Calculate</button>
       </form>
+      <div>
+        <h2>Users</h2>
+        <ul>
+          {users.map((user) => (
+            <li key={user.id}>
+              <>
+                {user.name}
+                <button onClick={() => removeUser(user.id)}>Remove</button>
+              </>
+            </li>
+          ))}
+        </ul>
+      </div>
       {answer && (
         <p>
           The answer is: <strong>{answer}</strong>
